@@ -5,6 +5,10 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import "./index.css";
 import { ColorModeContext, themeSettings, useMode } from "./theme";
+import Topbar from "./scenes/global/TopBar";
+import SideBar from "./scenes/global/SideBar";
+import { Route, Routes } from "react-router-dom";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -14,10 +18,14 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="App">
-          <Button variant="contained">+</Button>
-          <Button onClick={colorMode.toggleColorMode} variant="outlined">
-            Toggle {theme.palette.mode === "dark" ? "Light" : "Dark"} Mode
-          </Button>
+          <SideBar />
+          <main className="content">
+            <Topbar />
+            <Routes>
+              <Route path="/" element={<div>Dashboard</div>} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
