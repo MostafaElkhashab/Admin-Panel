@@ -16,6 +16,7 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
+import { useTranslation } from "react-i18next";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -38,8 +39,10 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { t, i18n } = useTranslation();
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState("dashboard");
+  const isRTL = i18n.language === "ar";
 
   return (
     <Box
@@ -51,7 +54,7 @@ const Sidebar = () => {
           backgroundColor: "transparent !important",
         },
         "& .pro-inner-item": {
-          padding: "5px 35px 5px 20px !important",
+          padding: `5px ${isRTL ? "20px" : "35px"} 5px ${isRTL ? "35px" : "20px"} !important`,
         },
         "& .pro-inner-item:hover": {
           color: "#868dfb !important",
@@ -77,10 +80,11 @@ const Sidebar = () => {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                ml="15px"
+                ml={isRTL ? 0 : "15px"}
+                mr={isRTL ? "15px" : 0}
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  {t("app.title")}
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -89,36 +93,14 @@ const Sidebar = () => {
             )}
           </MenuItem>
 
-          {!isCollapsed && (
-            <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <img
-                  alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../assets/user.png`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                />
-              </Box>
-              <Box textAlign="center">
-                <Typography
-                  variant="h2"
-                  color={colors.grey[100]}
-                  fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
-                >
-                  Ed Roh
-                </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
-                </Typography>
-              </Box>
-            </Box>
-          )}
+          {!isCollapsed && <Box mb="25px"></Box>}
 
-          <Box paddingLeft={isCollapsed ? undefined : "10%"}>
+          <Box
+            paddingLeft={isRTL ? 0 : isCollapsed ? undefined : "10%"}
+            paddingRight={isRTL ? (isCollapsed ? undefined : "10%") : 0}
+          >
             <Item
-              title="Dashboard"
+              title={t("sidebar.dashboard")}
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
@@ -128,26 +110,29 @@ const Sidebar = () => {
             <Typography
               variant="h6"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              sx={{
+                m: isRTL ? "15px 5px 5px 0" : "15px 0 5px 20px",
+                textAlign: isRTL ? "right" : "left",
+              }}
             >
-              Data
+              {t("sidebar.data")}
             </Typography>
             <Item
-              title="Manage Team"
+              title={t("sidebar.manageTeam")}
               to="/team"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Contacts Information"
+              title={t("sidebar.contactsInfo")}
               to="/contacts"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Invoices Balances"
+              title={t("sidebar.invoicesBalances")}
               to="/invoices"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
@@ -157,26 +142,29 @@ const Sidebar = () => {
             <Typography
               variant="h6"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              sx={{
+                m: isRTL ? "15px 5px 5px 0" : "15px 0 5px 20px",
+                textAlign: isRTL ? "right" : "left",
+              }}
             >
-              Pages
+              {t("sidebar.pages")}
             </Typography>
             <Item
-              title="Profile Form"
+              title={t("sidebar.profileForm")}
               to="/form"
               icon={<PersonOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Calendar"
+              title={t("sidebar.calendar")}
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="FAQ Page"
+              title={t("sidebar.faqPage")}
               to="/faq"
               icon={<HelpOutlineOutlinedIcon />}
               selected={selected}
@@ -186,33 +174,36 @@ const Sidebar = () => {
             <Typography
               variant="h6"
               color={colors.grey[300]}
-              sx={{ m: "15px 0 5px 20px" }}
+              sx={{
+                m: isRTL ? "15px 5px 5px 0" : "15px 0 5px 20px",
+                textAlign: isRTL ? "right" : "left",
+              }}
             >
-              Charts
+              {t("sidebar.charts")}
             </Typography>
             <Item
-              title="Bar Chart"
+              title={t("sidebar.barChart")}
               to="/bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Pie Chart"
+              title={t("sidebar.pieChart")}
               to="/pie"
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Line Chart"
+              title={t("sidebar.lineChart")}
               to="/line"
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Geography Chart"
+              title={t("sidebar.geographyChart")}
               to="/geography"
               icon={<MapOutlinedIcon />}
               selected={selected}

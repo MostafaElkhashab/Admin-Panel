@@ -1,0 +1,40 @@
+{
+  "app": {
+    "title": "ADMIN PANEL"
+  },
+  "search": "Search",
+  "sidebar": {
+    "data": "Data",
+    "pages": "Pages",
+    "charts": "Charts",
+    "dashboard": "Dashboard",
+    "manageTeam": "Manage Team",
+    "contactsInfo": "Contacts Information",
+    "invoicesBalances": "Invoices Balances",
+    "profileForm": "Profile Form",
+    "calendar": "Calendar",
+    "faqPage": "FAQ Page",
+    "barChart": "Bar Chart",
+    "pieChart": "Pie Chart",
+    "lineChart": "Line Chart",
+    "geographyChart": "Geography Chart"
+  },
+  "topbar": {
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "notifications": "Notifications",
+    "language": "Language",
+    "settings": "Settings",
+    "profile": "Profile"
+  },
+  "languages": {
+    "en": "EN - English",
+    "ar": "AR - العربية"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you're looking for doesn't exist or has been moved. Let's get you back on track.",
+    "backHome": "Back to Home",
+    "contactSupport": "Contact Support"
+  }
+}

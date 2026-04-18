@@ -9,9 +9,16 @@ import Topbar from "./scenes/global/TopBar";
 import SideBar from "./scenes/global/SideBar";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./components/NotFound";
+import { useTranslation } from "react-i18next";
 
 function App() {
   const [theme, colorMode] = useMode();
+  const { i18n } = useTranslation();
+  useMemo(() => {
+    const htmlElement = document.documentElement;
+    htmlElement.lang = i18n.language;
+    htmlElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+  }, [i18n.language]);
 
   return (
     <ColorModeContext.Provider value={colorMode}>

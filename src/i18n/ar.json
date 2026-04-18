@@ -1,0 +1,40 @@
+{
+  "app": {
+    "title": "الإدارة"
+  },
+  "search": "البحث",
+  "sidebar": {
+    "data": "البيانات",
+    "pages": "الصفحات",
+    "charts": "الرسوم البيانية",
+    "dashboard": "لوحة التحكم",
+    "manageTeam": "إدارة الفريق",
+    "contactsInfo": "معلومات جهات الاتصال",
+    "invoicesBalances": "أرصدة الفواتير",
+    "profileForm": "نموذج الملف الشخصي",
+    "calendar": "التقويم",
+    "faqPage": "صفحة الأسئلة الشائعة",
+    "barChart": "رسم بياني شريطي",
+    "pieChart": "رسم بياني دائري",
+    "lineChart": "رسم بياني خطي",
+    "geographyChart": "رسم بياني جغرافي"
+  },
+  "topbar": {
+    "lightMode": "الوضع الفاتح",
+    "darkMode": "الوضع الداكن",
+    "notifications": "الإشعارات",
+    "language": "اللغة",
+    "settings": "الإعدادات",
+    "profile": "الملف الشخصي"
+  },
+  "languages": {
+    "en": "EN - English",
+    "ar": "AR - العربية"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "description": "عذرًا، الصفحة التي تبحث عنها غير موجودة أو تم نقلها. دعنا نعيدك إلى المسار الصحيح.",
+    "backHome": "العودة إلى الصفحة الرئيسية",
+    "contactSupport": "الاتصال بالدعم"
+  }
+}

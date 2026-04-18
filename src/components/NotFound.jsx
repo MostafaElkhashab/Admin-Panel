@@ -3,11 +3,13 @@ import { tokens } from "../theme";
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchOffIcon from "@mui/icons-material/SearchOff";
+import { useTranslation } from "react-i18next";
 
 const NotFound = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -77,7 +79,7 @@ const NotFound = () => {
             fontWeight: "600",
           }}
         >
-          Page Not Found
+          {t("notFound.title")}
         </Typography>
 
         {/* Error Description */}
@@ -89,8 +91,7 @@ const NotFound = () => {
             lineHeight: 1.6,
           }}
         >
-          Sorry, the page you're looking for doesn't exist or has been moved.
-          Let's get you back on track.
+          {t("notFound.description")}
         </Typography>
 
         {/* Action Buttons */}
@@ -126,7 +127,7 @@ const NotFound = () => {
             }}
             startIcon={<HomeIcon />}
           >
-            Go to Home
+            {t("notFound.backHome")}
           </Button>
 
           <Button
@@ -148,7 +149,7 @@ const NotFound = () => {
               },
             }}
           >
-            Go Back
+            {t("notFound.contactSupport")}
           </Button>
         </Box>
 
