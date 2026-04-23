@@ -35,3 +35,19 @@ body,
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+.dark .MuiDataGrid-columnHeaders .MuiDataGrid-columnHeader {
+  background-color: #3e4396 !important;
+}
+.light .MuiDataGrid-columnHeaders .MuiDataGrid-columnHeader {
+  background-color: #a4a9fc !important;
+}
+.light .MuiDataGrid-columnHeaders .MuiDataGrid-scrollbarFiller {
+  background-color: #a4a9fc !important;
+}
+
+.dark .MuiDataGrid-columnHeaders .MuiDataGrid-scrollbarFiller {
+  background-color: #3e4396 !important;
+}
+.MuiDataGrid-columnHeader .MuiDataGrid-sortButton {
+  background-color: transparent !important;
+}

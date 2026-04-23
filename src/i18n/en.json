@@ -27,6 +27,10 @@
     "settings": "Settings",
     "profile": "Profile"
   },
+  "team": {
+    "title": "Team",
+    "subtitle": "Manage your team members"
+  },
   "languages": {
     "en": "EN - English",
     "ar": "AR - العربية"

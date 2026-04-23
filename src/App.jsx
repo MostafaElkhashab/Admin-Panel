@@ -10,6 +10,11 @@ import SideBar from "./scenes/global/SideBar";
 import { Route, Routes } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import { useTranslation } from "react-i18next";
+import Team from "./scenes/team/Team";
+import Contacts from "./scenes/contacts/Contacts";
+import Invoices from "./scenes/invoices/Invoices";
+import { ToastContainer } from "react-toastify";
+import Form from "./scenes/form/Form";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -24,15 +29,20 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="App">
+        <div className={`App ${theme.palette.mode}`}>
           <SideBar />
           <main className="content">
             <Topbar />
             <Routes>
               <Route path="/" element={<div>Dashboard</div>} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/contacts" element={<Contacts />} />
+              <Route path="/invoices" element={<Invoices />} />
+              <Route path="/form" element={<Form />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
+          <ToastContainer />
         </div>
       </ThemeProvider>
     </ColorModeContext.Provider>

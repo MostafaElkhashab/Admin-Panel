@@ -27,6 +27,10 @@
     "settings": "الإعدادات",
     "profile": "الملف الشخصي"
   },
+  "team": {
+    "title": "الفريق",
+    "subtitle": "إدارة أعضاء فريقك"
+  },
   "languages": {
     "en": "EN - English",
     "ar": "AR - العربية"
