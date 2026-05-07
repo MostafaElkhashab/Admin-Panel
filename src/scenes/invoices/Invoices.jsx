@@ -3,31 +3,33 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataInvoices } from "../../data/mockData";
 import Header from "../../components/Header";
+import { useTranslation } from "react-i18next";
 
 const Invoices = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { t } = useTranslation();
   const columns = [
-    { field: "id", headerName: "ID" },
+    { field: "id", headerName: t("invoices.columns.id") },
     {
       field: "name",
-      headerName: "Name",
+      headerName: t("invoices.columns.name"),
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
       field: "phone",
-      headerName: "Phone Number",
+      headerName: t("invoices.columns.phone"),
       flex: 1,
     },
     {
       field: "email",
-      headerName: "Email",
+      headerName: t("invoices.columns.email"),
       flex: 1,
     },
     {
       field: "cost",
-      headerName: "Cost",
+      headerName: t("invoices.columns.cost"),
       flex: 1,
       renderCell: (params) => (
         <Typography color={colors.greenAccent[500]}>
@@ -37,14 +39,14 @@ const Invoices = () => {
     },
     {
       field: "date",
-      headerName: "Date",
+      headerName: t("invoices.columns.date"),
       flex: 1,
     },
   ];
 
   return (
     <Box m="20px">
-      <Header title="INVOICES" subtitle="List of Invoice Balances" />
+      <Header title={t("invoices.title")} subtitle={t("invoices.subtitle")} />
       <Box
         m="40px 0 0 0"
         height="75vh"

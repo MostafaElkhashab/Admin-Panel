@@ -1,64 +1,62 @@
-import React from "react";
 import { Box } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const Contacts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { t } = useTranslation();
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5 },
-    { field: "registrarId", headerName: "Registrar ID" },
+    { field: "id", headerName: t("contacts.columns.id"), flex: 0.5 },
+    { field: "registrarId", headerName: t("contacts.columns.registrarId") },
     {
       field: "name",
-      headerName: "Name",
+      headerName: t("contacts.columns.name"),
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
       field: "age",
-      headerName: "Age",
+      headerName: t("contacts.columns.age"),
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
       field: "phone",
-      headerName: "Phone Number",
+      headerName: t("contacts.columns.phone"),
       flex: 1,
     },
     {
       field: "email",
-      headerName: "Email",
+      headerName: t("contacts.columns.email"),
       flex: 1,
     },
     {
       field: "address",
-      headerName: "Address",
+      headerName: t("contacts.columns.address"),
       flex: 1,
     },
     {
       field: "city",
-      headerName: "City",
+      headerName: t("contacts.columns.city"),
       flex: 1,
     },
     {
       field: "zipCode",
-      headerName: "Zip Code",
+      headerName: t("contacts.columns.zipCode"),
       flex: 1,
     },
   ];
 
   return (
     <Box m="20px">
-      <Header
-        title="CONTACTS"
-        subtitle="List of Contacts for Future Reference"
-      />
+      <Header title={t("contacts.title")} subtitle={t("contacts.subtitle")} />
       <Box
         m="40px 0 0 0"
         height="75vh"

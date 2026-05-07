@@ -4,6 +4,8 @@ import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+
 const initialValues = {
   firstName: "",
   lastName: "",
@@ -15,22 +17,31 @@ const initialValues = {
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const { t } = useTranslation();
 
-  const handleFormSubmit = (values) => {
-    toast.success("User created successfully!");
-    initialValues = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      contact: "",
-      address1: "",
-      address2: "",
-    };
+  const checkoutSchema = yup.object().shape({
+    firstName: yup.string().required(t("form.validation.required")),
+    lastName: yup.string().required(t("form.validation.required")),
+    email: yup
+      .string()
+      .email(t("form.validation.invalidEmail"))
+      .required(t("form.validation.required")),
+    contact: yup
+      .string()
+      .matches(phoneRegExp, t("form.validation.invalidPhone"))
+      .required(t("form.validation.required")),
+    address1: yup.string().required(t("form.validation.required")),
+    address2: yup.string().required(t("form.validation.required")),
+  });
+
+  const handleFormSubmit = (values, actions) => {
+    toast.success(t("form.toastSuccess"));
+    actions.resetForm();
   };
 
   return (
     <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+      <Header title={t("form.title")} subtitle={t("form.subtitle")} />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -58,7 +69,7 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="First Name"
+                label={t("form.fields.firstName")}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.firstName}
@@ -71,7 +82,7 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Last Name"
+                label={t("form.fields.lastName")}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.lastName}
@@ -84,7 +95,7 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Email"
+                label={t("form.fields.email")}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.email}
@@ -97,7 +108,7 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Contact Number"
+                label={t("form.fields.contact")}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.contact}
@@ -110,7 +121,7 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Address 1"
+                label={t("form.fields.address1")}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.address1}
@@ -123,7 +134,7 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="Address 2"
+                label={t("form.fields.address2")}
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.address2}
@@ -135,7 +146,7 @@ const Form = () => {
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
-                Create New User
+                {t("form.submit")}
               </Button>
             </Box>
           </form>
@@ -147,17 +158,5 @@ const Form = () => {
 
 const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
-
-const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
-  contact: yup
-    .string()
-    .matches(phoneRegExp, "Phone number is not valid")
-    .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
-});
 
 export default Form;

@@ -29,16 +29,157 @@
   },
   "team": {
     "title": "Team",
-    "subtitle": "Manage your team members"
-  },
-  "languages": {
-    "en": "EN - English",
-    "ar": "AR - العربية"
+    "subtitle": "Manage your team members",
+    "columns": {
+      "id": "ID",
+      "name": "Name",
+      "age": "Age",
+      "phone": "Phone Number",
+      "email": "Email",
+      "accessLevel": "Access Level"
+    },
+    "access": {
+      "admin": "Admin",
+      "manager": "Manager",
+      "user": "User"
+    }
   },
   "notFound": {
     "title": "Page Not Found",
     "description": "Sorry, the page you're looking for doesn't exist or has been moved. Let's get you back on track.",
     "backHome": "Back to Home",
-    "contactSupport": "Contact Support"
+    "contactSupport": "Contact Support",
+    "helpText": "If you believe this is a mistake, please contact support."
+  },
+  "languages": {
+    "en": "EN - English",
+    "ar": "AR - العربية"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Welcome to your dashboard",
+    "downloadReports": "Download Reports",
+    "stats": {
+      "emailsSent": "Emails Sent",
+      "salesObtained": "Sales Obtained",
+      "newClients": "New Clients",
+      "trafficReceived": "Traffic Received"
+    },
+    "revenueGenerated": "Revenue Generated",
+    "recentTransactions": "Recent Transactions",
+    "campaign": "Campaign",
+    "campaignRevenue": "{{amount}} revenue generated",
+    "campaignNote": "Includes extra misc expenditures and costs",
+    "salesQuantity": "Sales Quantity",
+    "geographyTraffic": "Geography Based Traffic"
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Frequently Asked Questions Page",
+    "questions": {
+      "q1": {
+        "title": "An Important Question",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+      },
+      "q2": {
+        "title": "Another Important Question",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+      },
+      "q3": {
+        "title": "Your Favorite Question",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+      },
+      "q4": {
+        "title": "Some Random Question",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+      },
+      "q5": {
+        "title": "The Final Question",
+        "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget."
+      }
+    }
+  },
+  "bar": {
+    "title": "Bar Chart",
+    "subtitle": "Simple Bar Chart"
+  },
+  "pie": {
+    "title": "Pie Chart",
+    "subtitle": "Simple Pie Chart"
+  },
+  "line": {
+    "title": "Line Chart",
+    "subtitle": "Simple Line Chart"
+  },
+  "geography": {
+    "title": "Geography",
+    "subtitle": "Simple Geography Chart"
+  },
+  "contacts": {
+    "title": "CONTACTS",
+    "subtitle": "List of Contacts for Future Reference",
+    "columns": {
+      "id": "ID",
+      "registrarId": "Registrar ID",
+      "name": "Name",
+      "age": "Age",
+      "phone": "Phone Number",
+      "email": "Email",
+      "address": "Address",
+      "city": "City",
+      "zipCode": "Zip Code"
+    }
+  },
+  "invoices": {
+    "title": "INVOICES",
+    "subtitle": "List of Invoice Balances",
+    "columns": {
+      "id": "ID",
+      "name": "Name",
+      "phone": "Phone Number",
+      "email": "Email",
+      "cost": "Cost",
+      "date": "Date"
+    }
+  },
+  "form": {
+    "title": "CREATE USER",
+    "subtitle": "Create a New User Profile",
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "contact": "Contact Number",
+      "address1": "Address 1",
+      "address2": "Address 2"
+    },
+    "submit": "Create New User",
+    "toastSuccess": "User created successfully!",
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "invalidPhone": "Phone number is not valid"
+    }
+  },
+  "calendar": {
+    "title": "Calendar",
+    "subtitle": "Full Calendar Interactive Page",
+    "events": "Events",
+    "createEvent": "Create event",
+    "selectedDate": "Selected date:",
+    "eventTitle": "Event title",
+    "cancel": "Cancel",
+    "add": "Add",
+    "eventDetails": "Event details",
+    "start": "Start:",
+    "end": "End:",
+    "delete": "Delete",
+    "close": "Close",
+    "save": "Save",
+    "notAvailable": "N/A",
+    "initialEvents": {
+      "codingSession": "Coding session",
+      "meetingWithTeam": "Meeting with team"
+    }
   }
 }

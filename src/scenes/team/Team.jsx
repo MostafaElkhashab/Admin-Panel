@@ -12,34 +12,40 @@ const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { t } = useTranslation();
+  const accessLabels = {
+    admin: t("team.access.admin"),
+    manager: t("team.access.manager"),
+    user: t("team.access.user"),
+  };
+
   const columns = [
-    { field: "id", headerName: "ID" },
+    { field: "id", headerName: t("team.columns.id") },
     {
       field: "name",
-      headerName: "Name",
+      headerName: t("team.columns.name"),
       flex: 1,
       cellClassName: "name-column--cell",
     },
     {
       field: "age",
-      headerName: "Age",
+      headerName: t("team.columns.age"),
       type: "number",
       headerAlign: "left",
       align: "left",
     },
     {
       field: "phone",
-      headerName: "Phone Number",
+      headerName: t("team.columns.phone"),
       flex: 1,
     },
     {
       field: "email",
-      headerName: "Email",
+      headerName: t("team.columns.email"),
       flex: 1,
     },
     {
       field: "access",
-      headerName: "Access Level",
+      headerName: t("team.columns.accessLevel"),
       flex: 1,
       renderCell: ({ row: { access } }) => {
         return (
@@ -62,7 +68,7 @@ const Team = () => {
             {access === "manager" && <SecurityOutlinedIcon />}
             {access === "user" && <LockOpenOutlinedIcon />}
             <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
+              {accessLabels[access] ?? access}
             </Typography>
           </Box>
         );

@@ -162,18 +162,7 @@ const NotFound = () => {
             fontSize: "14px",
           }}
         >
-          If you believe this is a mistake, please{" "}
-          <span
-            style={{
-              color: colors.greenAccent[500],
-              cursor: "pointer",
-              fontWeight: "600",
-              textDecoration: "none",
-            }}
-          >
-            contact support
-          </span>
-          .
+          {t("notFound.helpText")}
         </Typography>
       </Box>
     </Box>
