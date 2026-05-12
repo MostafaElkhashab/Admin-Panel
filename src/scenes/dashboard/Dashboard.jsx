@@ -20,9 +20,15 @@ const Dashboard = () => {
   const { t } = useTranslation();
 
   return (
-    <Box m="20px">
+    <Box m={{ xs: "10px", md: "20px" }}>
       {/* HEADER */}
-      <Box display="flex" justifyContent="space-between" alignItems="center">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        flexWrap="wrap"
+        gap={2}
+      >
         <Header
           title={t("dashboard.title")}
           subtitle={t("dashboard.subtitle")}
@@ -36,6 +42,7 @@ const Dashboard = () => {
               fontSize: "14px",
               fontWeight: "bold",
               padding: "10px 20px",
+              width: { xs: "100%", sm: "auto" },
             }}
           >
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
@@ -47,17 +54,27 @@ const Dashboard = () => {
       {/* GRID & CHARTS */}
       <Box
         display="grid"
-        gridTemplateColumns="repeat(12, 1fr)"
-        gridAutoRows="140px"
-        gap="20px"
+        sx={{
+          gridTemplateColumns: {
+            xs: "repeat(1, 1fr)",
+            sm: "repeat(2, 1fr)",
+            md: "repeat(12, 1fr)",
+          },
+          gridAutoRows: "minmax(140px, auto)",
+          gap: "20px",
+        }}
       >
         {/* ROW 1 */}
         <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
+          sx={{
+            gridColumn: { xs: "span 12", sm: "span 6", md: "span 3" },
+            backgroundColor: colors.primary[400],
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "140px",
+            p: { xs: "15px", md: 0 },
+          }}
         >
           <StatBox
             title="2,361"
@@ -72,11 +89,15 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
+          sx={{
+            gridColumn: { xs: "span 12", sm: "span 6", md: "span 3" },
+            backgroundColor: colors.primary[400],
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "140px",
+            p: { xs: "15px", md: 0 },
+          }}
         >
           <StatBox
             title="31,225"
@@ -91,11 +112,15 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
+          sx={{
+            gridColumn: { xs: "span 12", sm: "span 6", md: "span 3" },
+            backgroundColor: colors.primary[400],
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "140px",
+            p: { xs: "15px", md: 0 },
+          }}
         >
           <StatBox
             title="11,441"
@@ -110,11 +135,15 @@ const Dashboard = () => {
           />
         </Box>
         <Box
-          gridColumn="span 3"
-          backgroundColor={colors.primary[400]}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
+          sx={{
+            gridColumn: { xs: "span 12", sm: "span 6", md: "span 3" },
+            backgroundColor: colors.primary[400],
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "140px",
+            p: { xs: "15px", md: 0 },
+          }}
         >
           <StatBox
             title="1,325,134"
@@ -131,16 +160,21 @@ const Dashboard = () => {
 
         {/* ROW 2 */}
         <Box
-          gridColumn="span 8"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
+          sx={{
+            gridColumn: { xs: "span 12", md: "span 8" },
+            gridRow: { xs: "auto", md: "span 2" },
+            backgroundColor: colors.primary[400],
+          }}
         >
           <Box
-            mt="25px"
-            p="0 30px"
-            display="flex "
-            justifyContent="space-between"
-            alignItems="center"
+            sx={{
+              mt: "25px",
+              p: { xs: "0 16px", md: "0 30px" },
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              justifyContent: "space-between",
+              alignItems: { xs: "flex-start", sm: "center" },
+            }}
           >
             <Box>
               <Typography
@@ -166,67 +200,90 @@ const Dashboard = () => {
               </IconButton>
             </Box>
           </Box>
-          <Box height="250px" m="-20px 0 0 0">
+          <Box height={{ xs: "220px", md: "250px" }} m="-20px 0 0 0">
             <LineChart isDashboard={true} />
           </Box>
         </Box>
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          overflow="auto"
+          sx={{
+            gridColumn: { xs: "span 12", md: "span 4" },
+            gridRow: { xs: "auto", md: "span 2" },
+            backgroundColor: colors.primary[400],
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+            maxHeight: { xs: "auto", md: "320px" },
+          }}
         >
           <Box
             display="flex"
+            flexDirection={{ xs: "column", sm: "row" }}
             justifyContent="space-between"
-            alignItems="center"
+            alignItems={{ xs: "flex-start", sm: "center" }}
             borderBottom={`4px solid ${colors.primary[500]}`}
             colors={colors.grey[100]}
             p="15px"
+            gap={1}
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
               {t("dashboard.recentTransactions")}
             </Typography>
           </Box>
-          {mockTransactions.map((transaction, i) => (
-            <Box
-              key={`${transaction.txId}-${i}`}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              borderBottom={`4px solid ${colors.primary[500]}`}
-              p="15px"
-            >
-              <Box>
-                <Typography
-                  color={colors.greenAccent[500]}
-                  variant="h5"
-                  fontWeight="600"
-                >
-                  {transaction.txId}
-                </Typography>
-                <Typography color={colors.grey[100]}>
-                  {transaction.user}
-                </Typography>
-              </Box>
-              <Box color={colors.grey[100]}>{transaction.date}</Box>
+          <Box sx={{ overflowY: "auto", px: "15px", py: "10px", flex: 1 }}>
+            {mockTransactions.map((transaction, i) => (
               <Box
-                backgroundColor={colors.greenAccent[500]}
-                p="5px 10px"
-                borderRadius="4px"
+                key={`${transaction.txId}-${i}`}
+                display="flex"
+                flexDirection={{ xs: "column", sm: "row" }}
+                justifyContent="space-between"
+                alignItems={{ xs: "flex-start", sm: "center" }}
+                borderBottom={`4px solid ${colors.primary[500]}`}
+                py="15px"
+                gap={1}
               >
-                ${transaction.cost}
+                <Box sx={{ minWidth: 0 }}>
+                  <Typography
+                    color={colors.greenAccent[500]}
+                    variant="h5"
+                    fontWeight="600"
+                  >
+                    {transaction.txId}
+                  </Typography>
+                  <Typography color={colors.grey[100]}>
+                    {transaction.user}
+                  </Typography>
+                </Box>
+                <Box
+                  color={colors.grey[100]}
+                  sx={{ width: { xs: "100%", sm: "auto" }, minWidth: 0 }}
+                >
+                  {transaction.date}
+                </Box>
+                <Box
+                  backgroundColor={colors.greenAccent[500]}
+                  p="5px 10px"
+                  borderRadius="4px"
+                  sx={{
+                    alignSelf: { xs: "stretch", sm: "auto" },
+                    textAlign: { xs: "center", sm: "left" },
+                    width: { xs: "100%", sm: "auto" },
+                  }}
+                >
+                  ${transaction.cost}
+                </Box>
               </Box>
-            </Box>
-          ))}
+            ))}
+          </Box>
         </Box>
 
         {/* ROW 3 */}
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          p="30px"
+          sx={{
+            gridColumn: { xs: "span 12", md: "span 4" },
+            gridRow: { xs: "auto", md: "span 2" },
+            backgroundColor: colors.primary[400],
+            p: { xs: "20px", md: "30px" },
+          }}
         >
           <Typography variant="h5" fontWeight="600">
             {t("dashboard.campaign")}
@@ -249,26 +306,30 @@ const Dashboard = () => {
           </Box>
         </Box>
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
+          sx={{
+            gridColumn: { xs: "span 12", md: "span 4" },
+            gridRow: { xs: "auto", md: "span 2" },
+            backgroundColor: colors.primary[400],
+          }}
         >
           <Typography
             variant="h5"
             fontWeight="600"
-            sx={{ padding: "30px 30px 0 30px" }}
+            sx={{ padding: { xs: "20px", md: "30px" } }}
           >
             {t("dashboard.salesQuantity")}
           </Typography>
-          <Box height="250px" mt="-20px">
+          <Box height={{ xs: "220px", md: "250px" }} mt="-20px">
             <BarChart isDashboard={true} />
           </Box>
         </Box>
         <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          padding="30px"
+          sx={{
+            gridColumn: { xs: "span 12", md: "span 4" },
+            gridRow: { xs: "auto", md: "span 2" },
+            backgroundColor: colors.primary[400],
+            p: { xs: "20px", md: "30px" },
+          }}
         >
           <Typography
             variant="h5"

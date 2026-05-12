@@ -18,7 +18,15 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { useTranslation } from "react-i18next";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({
+  title,
+  to,
+  icon,
+  selected,
+  setSelected,
+  isMobile,
+  setMobileOpen,
+}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -27,7 +35,12 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
       style={{
         color: colors.grey[100],
       }}
-      onClick={() => setSelected(title)}
+      onClick={() => {
+        setSelected(title);
+        if (isMobile) {
+          setMobileOpen(false);
+        }
+      }}
       icon={icon}
     >
       <Typography>{title}</Typography>
@@ -36,7 +49,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
-const Sidebar = () => {
+const Sidebar = ({ isMobile, mobileOpen, setMobileOpen }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { t, i18n } = useTranslation();

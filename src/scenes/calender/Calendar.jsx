@@ -1,6 +1,6 @@
 import FullCalendar from "@fullcalendar/react";
 import { formatDate } from "@fullcalendar/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -29,7 +29,78 @@ const Calendar = () => {
     theme.palette.mode === "dark" ? colors.primary[400] : "#fff";
   const dialogTextColor = theme.palette.text.primary;
   const { t } = useTranslation();
-  const [currentEvents, setCurrentEvents] = useState([]);
+  const localStorageKey = "calendarEvents";
+
+  const defaultEvents = [
+    {
+      id: "12315",
+      title: t("calendar.initialEvents.codingSession"),
+      start: "2026-05-14",
+      allDay: true,
+    },
+    {
+      id: "5123",
+      title: t("calendar.initialEvents.meetingWithTeam"),
+      start: "2026-05-11",
+      allDay: true,
+    },
+  ];
+
+  const getSavedEvents = () => {
+    if (typeof window === "undefined") return defaultEvents;
+    const storedEvents = localStorage.getItem(localStorageKey);
+    if (!storedEvents) return defaultEvents;
+
+    try {
+      const parsedEvents = JSON.parse(storedEvents);
+      return Array.isArray(parsedEvents) && parsedEvents.length
+        ? parsedEvents
+        : defaultEvents;
+    } catch (error) {
+      return defaultEvents;
+    }
+  };
+
+  const [currentEvents, setCurrentEvents] = useState(getSavedEvents);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    localStorage.setItem(localStorageKey, JSON.stringify(currentEvents));
+  }, [currentEvents, localStorageKey]);
+
+  const handleEventAdd = ({ event }) => {
+    setCurrentEvents((prev) => [
+      ...prev,
+      {
+        id: event.id,
+        title: event.title,
+        start: event.start ? event.start.toISOString() : event.start,
+        end: event.end ? event.end.toISOString() : event.end,
+        allDay: event.allDay,
+      },
+    ]);
+  };
+
+  const handleEventChange = ({ event }) => {
+    setCurrentEvents((prev) =>
+      prev.map((item) =>
+        item.id === event.id
+          ? {
+              id: event.id,
+              title: event.title,
+              start: event.start ? event.start.toISOString() : event.start,
+              end: event.end ? event.end.toISOString() : event.end,
+              allDay: event.allDay,
+            }
+          : item,
+      ),
+    );
+  };
+
+  const handleEventRemove = ({ event }) => {
+    setCurrentEvents((prev) => prev.filter((item) => item.id !== event.id));
+  };
+
   const [openDateModal, setOpenDateModal] = useState(false);
   const [openEventModal, setOpenEventModal] = useState(false);
   const [selectedDateInfo, setSelectedDateInfo] = useState(null);
@@ -134,7 +205,7 @@ const Calendar = () => {
                   primary={event.title}
                   secondary={
                     <Typography>
-                      {formatDate(event.start, {
+                      {formatDate(new Date(event.start), {
                         year: "numeric",
                         month: "short",
                         day: "numeric",
@@ -169,19 +240,10 @@ const Calendar = () => {
             dayMaxEvents={true}
             select={handleDateClick}
             eventClick={handleEventClick}
-            eventsSet={(events) => setCurrentEvents(events)}
-            initialEvents={[
-              {
-                id: "12315",
-                title: t("calendar.initialEvents.codingSession"),
-                date: "2026-05-14",
-              },
-              {
-                id: "5123",
-                title: t("calendar.initialEvents.meetingWithTeam"),
-                date: "2026-05-11",
-              },
-            ]}
+            eventAdd={handleEventAdd}
+            eventChange={handleEventChange}
+            eventRemove={handleEventRemove}
+            events={currentEvents}
           />
         </Box>
       </Box>
